@@ -27,14 +27,18 @@ async function renderData() {
     description.textContent = item.description;
 
     const ingredients = document.createElement("p");
-    ingredients.textContent = item.ingredients;
+    ingredients.textContent ="Ingredients: "+ item.ingredients;
+
+    const image = document.createElement("img");
+    image.src = item.image;
+    image.alt = item.image;
 
     card.appendChild(title);
     card.appendChild(description);
     card.appendChild(ingredients);
+    card.appendChild(image);
     container.appendChild(card);
   });
 }
 
-// Call the renderData function to display data
 renderData();
