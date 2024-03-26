@@ -1,6 +1,6 @@
-async function fetchData() {
+async function fetchData(url) {
   try {
-    const response = await fetch("https://api.sampleapis.com/coffee/hot");
+    const response = await fetch(url);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -8,9 +8,13 @@ async function fetchData() {
   }
 }
 
-async function renderData() {
+async function renderData(url) {
+  
   const container = document.querySelector(".coffees");
-  const data = await fetchData();
+
+  container.innerHTML='';
+
+  const data = await fetchData(url);
 
   if (!data) {
     return;
@@ -27,7 +31,7 @@ async function renderData() {
     description.textContent = item.description;
 
     const ingredients = document.createElement("p");
-    ingredients.textContent ="Ingredients: "+ item.ingredients;
+    ingredients.textContent = "Ingredients: " + item.ingredients;
 
     const image = document.createElement("img");
     image.src = item.image;
@@ -41,4 +45,10 @@ async function renderData() {
   });
 }
 
-renderData();
+document.getElementById('hot').addEventListener('click', () => {
+    renderData('https://api.sampleapis.com/coffee/hot');
+});
+
+document.getElementById('iced').addEventListener('click', () => {
+    renderData('https://api.sampleapis.com/coffee/iced');
+});
