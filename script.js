@@ -56,6 +56,8 @@ async function renderData(url) {
   });
 }
 
+renderData("https://api.sampleapis.com/coffee/hot");
+
 document.getElementById("hot").addEventListener("click", () => {
   renderData("https://api.sampleapis.com/coffee/hot");
 });
